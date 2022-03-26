@@ -28,6 +28,24 @@ html, body{
 
 }
 
+.icon-container{
+    width: max-content;
+    float: right;
+    margin-right: 2em;
+}
+
+
+
+svg{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+svg:hover{
+    fill: #fe4c50;
+}
+
 .main-nav li{
     padding: 0 5%;
 }
@@ -92,6 +110,12 @@ html, body{
     background-size: 100%;
 }
 
+.electronicsCategory{
+    background-image: url(images/electronicsBackgroundCat2.jpg);
+    background-size: 100%;
+    width: 320px;
+}
+
 .category-title{
     cursor: pointer;
     display: block;
@@ -114,4 +138,104 @@ html, body{
 }
 .category-title:hover{
     color: #6f42c1;
+}
+
+.testimonialSection{
+    background-color: #F3EAD9;
+}
+
+.testimonial-title{
+    font-size: 34px;
+    font-weight: 500;
+    color: #292621;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.customer-statement{
+    line-height: 1.5;
+    padding: 0 200px;
+    margin-bottom: 32px;
+    font-size: 22px;
+    color: #292621;
+    font-weight: 400;
+}
+
+.customerSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.customerText{
+    display: block;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.customerImg{
+    border-radius: 50%;
+}
+
+.customerName{
+    font-family: "Jost",sans-serif;
+    color: #292621;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.customer{
+    color: #74706B;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.newsletterContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10em;
+    margin-top: 2em;
+    background-color: #F2F2F2;
+
+}
+
+h4{
+    margin-bottom: 0;
+    line-height: 24px;
+    font-size: 24px;
+}
+
+p2{
+    margin-bottom: 0;
+    line-height: 1.7;
+    color: #51545f;
+}
+
+.newsletter-form{
+    float: right;
+
+}
+
+
+#email{
+    width: 300px;
+    height: 46px;
+    background: #fff;
+    border: none;
+    padding-left: 20px
+}
+
+#newsletter-submit-btn{
+    width: 160px;
+    height: 46px;
+    border: none;
+    background: #fe4c50;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
 }
