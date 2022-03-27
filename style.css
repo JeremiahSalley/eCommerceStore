@@ -1,241 +1,272 @@
-*{
-    box-sizing: border-box;
-    /* color: #777; */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-html, body{
-    margin: 0;
-    padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.nav ol{
-    margin: 0;
+.nav ol {
+  margin: 0;
 }
 
-.nav li{
-    display: inline;
-    display: inline-block;
-    padding: .5em;
-    /* color: white; */
-    text-decoration: none;
+.nav li {
+  display: inline-block;
+  padding: 0.5em;
+  text-decoration: none;
 }
 
-.nav{
-    text-align: center;
-    font-size: 1.1em;
-    font-weight: lighter;
-    border-bottom: 1px solid rgba(255,255,255, .3);
-
+.nav {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: lighter;
+  height: 4em;
 }
 
-.icon-container{
-    width: max-content;
-    float: right;
-    margin-right: 2em;
+li a,
+.dropbtn {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-
-
-svg{
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
+li a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #f1f1f1;
 }
 
-svg:hover{
-    fill: #fe4c50;
+li.dropdown {
+  display: inline-block;
 }
 
-.main-nav li{
-    padding: 0 5%;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
-.main-header{
-    height: 450px;
-    /* outline: 2px solid black; */
-    background-image: url(images/xslider_1.jpg.pagespeed.ic.V9ovSIY03c.webp);
-    background-size: 100%;
-    /* background-size: auto; */
-    /* background-size: cover; */
-    background-repeat: no-repeat;
-    padding-bottom: 30px;
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
-.store-title{
-    margin: .5em 15% 0 5%;
-    padding-top: 150px;
-    text-align: left;
-    margin-top: 0;
-    font-size: 4em;
-    font-family: "Booter - Zero Zero";
-    font-weight: normal;
-    /* color: white; */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
 }
 
-.shopBtn{
-    margin: .5em 15% 2em 5%;
-    color: white;
-    border: 2px solid #FF4C50;
-    background-color: #FF4C50;
-    border-radius: 0;
-    font-size: 1.5em;
-    font-weight: lighter;
-    border-radius: .2em;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-.categorySection{
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 2em;
-}
-.categoryContainer{
-    /* border: 2px solid black; */
-    width: 20em;
-    height: 25em;
+.icon-container {
+  width: max-content;
+  float: right;
+  margin-top: .7em;
+  margin-right: 2em;
 }
 
-.womenCategory{
-    background-image: url(images/womenBackgroundCat2.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
+svg {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
 }
 
-.accessoriesCategory{
-    background-image: url(images/accessoriesBackgroundCat.jpg);
-    background-size: 100%;
+svg:hover {
+  fill: #fe4c50;
 }
 
-.menCategory{
-    background-image: url(images/menBackgroundCat3.jpg);
-    background-size: 100%;
+.main-nav li {
+  padding: 0 5%;
 }
 
-.electronicsCategory{
-    background-image: url(images/electronicsBackgroundCat2.jpg);
-    background-size: 100%;
-    width: 320px;
+.main-header {
+  height: 450px;
+  background-image: url(images/xslider_1.jpg.pagespeed.ic.V9ovSIY03c.webp);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 30px;
 }
 
-.category-title{
-    cursor: pointer;
-    display: block;
-    border: none;
-    color: #1e1e27;
-    text-transform: uppercase;
-    font-size: 22px;
-    font-weight: 600;
-    text-align: center;
-    line-height: 50px;
-    /* width: 50%; */
-    height: 50px;
-    background: #fff;
-    min-width: 180px;
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-top: 57%;
-    margin-left: 20%;
-    transition: ease-out;
-}
-.category-title:hover{
-    color: #6f42c1;
+.store-title {
+  margin: 0.5em 15% 0 5%;
+  padding-top: 150px;
+  text-align: left;
+  margin-top: 0;
+  font-size: 4em;
+  font-family: "Booter - Zero Zero";
+  font-weight: normal;
 }
 
-.testimonialSection{
-    background-color: #F3EAD9;
+.shopBtn {
+  margin: 0.5em 15% 2em 5%;
+  color: white;
+  border: 2px solid #ff4c50;
+  background-color: #ff4c50;
+  border-radius: 0;
+  font-size: 1.5em;
+  font-weight: lighter;
+  border-radius: 0.2em;
 }
 
-.testimonial-title{
-    font-size: 34px;
-    font-weight: 500;
-    color: #292621;
-    margin-bottom: 40px;
-    text-align: center;
+.categorySection {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2em;
+}
+.categoryContainer {
+  width: 20em;
+  height: 25em;
 }
 
-.customer-statement{
-    line-height: 1.5;
-    padding: 0 200px;
-    margin-bottom: 32px;
-    font-size: 22px;
-    color: #292621;
-    font-weight: 400;
+.womenCategory {
+  background-image: url(images/womenBackgroundCat2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
-.customerSection{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 30px;
+.accessoriesCategory {
+  background-image: url(images/accessoriesBackgroundCat.jpg);
+  background-size: 100%;
 }
 
-.customerText{
-    display: block;
-    margin-left: 20px;
-    text-align: left;
+.menCategory {
+  background-image: url(images/menBackgroundCat3.jpg);
+  background-size: 100%;
 }
 
-.customerImg{
-    border-radius: 50%;
+.electronicsCategory {
+  background-image: url(images/electronicsBackgroundCat2.jpg);
+  background-size: 100%;
+  width: 320px;
 }
 
-.customerName{
-    font-family: "Jost",sans-serif;
-    color: #292621;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: left;
+.category-title {
+  cursor: pointer;
+  display: block;
+  border: none;
+  color: #1e1e27;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  height: 50px;
+  background: #fff;
+  min-width: 180px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 57%;
+  margin-left: 20%;
+  transition: ease-out;
+}
+.category-title:hover {
+  color: #6f42c1;
 }
 
-.customer{
-    color: #74706B;
-    font-weight: 500;
-    line-height: 1.5;
+.testimonialSection {
+  background-color: #f3ead9;
 }
 
-.newsletterContainer{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 10em;
-    margin-top: 2em;
-    background-color: #F2F2F2;
-
+.testimonial-title {
+  font-size: 34px;
+  font-weight: 500;
+  color: #292621;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-h4{
-    margin-bottom: 0;
-    line-height: 24px;
-    font-size: 24px;
+.customer-statement {
+  line-height: 1.5;
+  padding: 0 200px;
+  margin-bottom: 32px;
+  font-size: 22px;
+  color: #292621;
+  font-weight: 400;
 }
 
-p2{
-    margin-bottom: 0;
-    line-height: 1.7;
-    color: #51545f;
+.customerSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
 }
 
-.newsletter-form{
-    float: right;
-
+.customerText {
+  display: block;
+  margin-left: 20px;
+  text-align: left;
 }
 
-
-#email{
-    width: 300px;
-    height: 46px;
-    background: #fff;
-    border: none;
-    padding-left: 20px
+.customerImg {
+  border-radius: 50%;
 }
 
-#newsletter-submit-btn{
-    width: 160px;
-    height: 46px;
-    border: none;
-    background: #fe4c50;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    cursor: pointer;
+.customerName {
+  font-family: "Jost", sans-serif;
+  color: #292621;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.customer {
+  color: #74706b;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.newsletterContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10em;
+  margin-top: 2em;
+  background-color: #f2f2f2;
+}
+
+h4 {
+  margin-bottom: 0;
+  line-height: 24px;
+  font-size: 24px;
+}
+
+p2 {
+  margin-bottom: 0;
+  line-height: 1.7;
+  color: #51545f;
+}
+
+.newsletter-form {
+  float: right;
+}
+
+#email {
+  width: 300px;
+  height: 46px;
+  background: #fff;
+  border: none;
+  padding-left: 20px;
+}
+
+#newsletter-submit-btn {
+  width: 160px;
+  height: 46px;
+  border: none;
+  background: #fe4c50;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
 }
