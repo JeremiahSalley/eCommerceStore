@@ -163,11 +163,12 @@ svg:hover {
   line-height: 50px;
   height: 50px;
   background: #fff;
-  min-width: 180px;
+  max-width: fit-content;
   padding-left: 25px;
   padding-right: 25px;
   margin-top: 57%;
   margin-left: 20%;
+  text-decoration: none;
   transition: ease-out;
 }
 .category-title:hover {
@@ -281,7 +282,6 @@ p2 {
 }
 
 .card{
-  background-color: whitesmoke;
   max-width: 20em;
   padding: 1em;
   margin-top: 1em;
@@ -296,29 +296,26 @@ p2 {
 }
 
 .shop-item-image{
+  display: block;
+  margin: auto;
   max-width: 100%;
-  object-fit: contain;
   height: 15em;
-  margin-left: 60px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 }
 
 
-.shop-item-details{
+.shopDetails{
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
 }
 
-.title{
-  
+.name{
   width: 100%;
-  font-size: 2.5em;
-  padding-bottom: 5px;
+  font-size: 1.2em;
+  padding-bottom: 2px;
   color: #9BBACE;
+  margin-bottom: auto;
 }
 
 .price{

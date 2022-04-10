@@ -16,7 +16,7 @@ function womenData(){
         </div>
         <div class="shopDetails">
           <h5 class="name">${values.title}</h5>
-          <p class="price">${values.price}</p>
+          <p class="price">$${values.price}</p>
           <button class="add-cart-btn">Add To Bag</button>
         </div>
       </div>`
@@ -41,7 +41,7 @@ function menData(){
       </div>
       <div class="shopDetails">
         <h5 class="name">${values.title}</h5>
-        <p class="price">${values.price}</p>
+        <p class="price">$${values.price}</p>
         <button class="add-cart-btn">Add To Bag</button>
       </div>
     </div>`
@@ -67,7 +67,7 @@ function jeweleryData(){
       </div>
       <div class="shopDetails">
         <h5 class="name">${values.title}</h5>
-        <p class="price">${values.price}</p>
+        <p class="price">$${values.price}</p>
         <button class="add-cart-btn">Add To Bag</button>
       </div>
     </div>`
@@ -93,7 +93,7 @@ function electronicsData(){
       </div>
       <div class="shopDetails">
         <h5 class="name">${values.title}</h5>
-        <p class="price">${values.price}</p>
+        <p class="price"> $${values.price}</p>
         <button class="add-cart-btn">Add To Bag</button>
       </div>
     </div>`
