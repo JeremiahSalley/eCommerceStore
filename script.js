@@ -4,7 +4,7 @@ const womenUrl = "https://fakestoreapi.com/products/category/women's clothing";
 const electronicsUrl = "https://fakestoreapi.com/products/category/electronics";
 const jeweleryUrl = "https://fakestoreapi.com/products/category/jewelery";
 
-function womenData(){
+function womenData() {
   fetch(womenUrl)
     .then((res) => res.json())
     .then((data) => {
@@ -19,23 +19,27 @@ function womenData(){
           <p class="price">$${values.price}</p>
           <button class="add-cart-btn">Add To Bag</button>
         </div>
-      </div>`
+      </div>`;
       });
-      console.log(femaleData)
       document.getElementById("womenProducts").innerHTML = femaleData;
+      let cartBtn = document.getElementsByClassName("add-cart-btn");
+      for (let i = 0; i < cartBtn.length; i++) {
+        let addToCart = cartBtn[i];
+        addToCart.addEventListener("click", addToCartClicked);
+      }
     })
     .catch((err) => {
       console.log(err);
     });
 }
 
-function menData(){
+function menData() {
   fetch(mensUrl)
-  .then((res) => res.json())
-  .then((data) => {
-    let maleData = "";
-    data.map((values) => {
-      maleData += `<div class="card">
+    .then((res) => res.json())
+    .then((data) => {
+      let maleData = "";
+      data.map((values) => {
+        maleData += `<div class="card">
       <div class="imageContainer">
         <img class="shop-item-image" src="${values.image}">
       </div>
@@ -44,24 +48,22 @@ function menData(){
         <p class="price">$${values.price}</p>
         <button class="add-cart-btn">Add To Bag</button>
       </div>
-    </div>`
+    </div>`;
+      });
+      document.getElementById("menProducts").innerHTML = maleData;
+    })
+    .catch((err) => {
+      console.log(err);
     });
-    console.log(maleData)
-    document.getElementById("menProducts").innerHTML = maleData;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 }
 
-
-function jeweleryData(){
+function jeweleryData() {
   fetch(jeweleryUrl)
-  .then((res) => res.json())
-  .then((data) => {
-    let jewlData = "";
-    data.map((values) => {
-      jewlData += `<div class="card">
+    .then((res) => res.json())
+    .then((data) => {
+      let jewlData = "";
+      data.map((values) => {
+        jewlData += `<div class="card">
       <div class="imageContainer">
         <img class="shop-item-image" src="${values.image}">
       </div>
@@ -70,24 +72,22 @@ function jeweleryData(){
         <p class="price">$${values.price}</p>
         <button class="add-cart-btn">Add To Bag</button>
       </div>
-    </div>`
+    </div>`;
+      });
+      document.getElementById("jewerelyProducts").innerHTML = jewlData;
+    })
+    .catch((err) => {
+      console.log(err);
     });
-    console.log(jewlData)
-    document.getElementById("jewerelyProducts").innerHTML = jewlData;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 }
 
-
-function electronicsData(){
+function electronicsData() {
   fetch(electronicsUrl)
-  .then((res) => res.json())
-  .then((data) => {
-    let tronicsData = "";
-    data.map((values) => {
-      tronicsData += `<div class="card">
+    .then((res) => res.json())
+    .then((data) => {
+      let tronicsData = "";
+      data.map((values) => {
+        tronicsData += `<div class="card">
       <div class="imageContainer">
         <img class="shop-item-image" src="${values.image}">
       </div>
@@ -96,23 +96,82 @@ function electronicsData(){
         <p class="price"> $${values.price}</p>
         <button class="add-cart-btn">Add To Bag</button>
       </div>
-    </div>`
+    </div>`;
+      });
+      document.getElementById("electronicsProducts").innerHTML = tronicsData;
+    })
+    .catch((err) => {
+      console.log(err);
     });
-    console.log(tronicsData)
-    document.getElementById("electronicsProducts").innerHTML = tronicsData;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 }
 
+menData();
 
+womenData();
 
+jeweleryData();
 
-menData()
+electronicsData();
 
-womenData()
+// create an search page that search all product from api via name or category
 
-jeweleryData()
+// create an cart that slides in from right to left and check out page
+let openPanelButton = document.getElementsByClassName("open-panel");
+let closePanelButton = document.getElementsByClassName("close-panel");
+let cartPanel = document.querySelector(".cart-panel");
 
-electronicsData()
+openPanelButton[0].onclick = () => {
+  console.log("here");
+  openPanelButton[0].classList.add("hide");
+  cartPanel.classList.toggle("open");
+  cartPanel.style.overflowY = 'auto';
+  document.documentElement.style.getPropertyValue('--scroll-y');
+  const body = document.body;
+  body.style.height = '100vh';
+  body.style.overflowY = 'hidden';
+};
+
+closePanelButton[0].onclick = () => {
+  openPanelButton[0].classList.remove("hide");
+  cartPanel.classList.remove("open");
+  const body = document.body;
+  const scrollY = body.style.top;
+  body.style.position = '';
+  body.style.top = '';
+  body.style.height = '';
+  body.style.overflowY = '';
+  window.scrollTo(0, parseInt(scrollY || '0') * -1);
+};
+
+function addToCartClicked(e) {
+  let button = e.target;
+  let shopItem = button.parentElement.parentElement;
+  let title = shopItem.getElementsByClassName("name")[0].innerText;
+  let price = shopItem.getElementsByClassName("price")[0].innerText;
+  let imgSrc = shopItem.getElementsByClassName("shop-item-image")[0].src;
+  addItemToCart(title, price, imgSrc);
+}
+
+function addItemToCart(title, price, imgSrc) {
+  let cartContents = document.getElementsByClassName("products")[0];
+  // let cartContent = document.getElementsByClassName("product")[0];
+  let newCartRow = document.createElement("div");
+  newCartRow.classList.add('product')
+  let cartRow = `
+  <img width="60" src="${imgSrc}" alt="iphone" />
+  <div>
+    <span class='title'> ${title}</span>
+    <div class='price-section'>
+    <input type="number" value="1" class="cart-quantity-input" />
+    ${price}
+    </div>
+
+  </div>
+  <button>
+    <i class="bi bi-x"></i>
+  </button>`;
+
+  newCartRow.innerHTML = cartRow
+  cartContents.appendChild(newCartRow)
+
+}
