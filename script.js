@@ -5,10 +5,6 @@ const electronicsUrl = "https://fakestoreapi.com/products/category/electronics";
 const jeweleryUrl = "https://fakestoreapi.com/products/category/jewelery";
 const searchInput = document.getElementById("search");
 const searchItems = document.getElementById("searchProducts");
-let shopCard = document.getElementsByClassName("card");
-
-let newShopCard = [...shopCard];
-console.log(newShopCard);
 
 function womenData() {
   fetch(womenUrl)
@@ -57,6 +53,11 @@ function menData() {
     </div>`;
       });
       document.getElementById("menProducts").innerHTML = maleData;
+      let cartBtn = document.getElementsByClassName("add-cart-btn");
+      for (let i = 0; i < cartBtn.length; i++) {
+        let addToCart = cartBtn[i];
+        addToCart.addEventListener("click", addToCartClicked);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -81,6 +82,11 @@ function jeweleryData() {
     </div>`;
       });
       document.getElementById("jewerelyProducts").innerHTML = jewlData;
+      let cartBtn = document.getElementsByClassName("add-cart-btn");
+      for (let i = 0; i < cartBtn.length; i++) {
+        let addToCart = cartBtn[i];
+        addToCart.addEventListener("click", addToCartClicked);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -105,6 +111,11 @@ function electronicsData() {
     </div>`;
       });
       document.getElementById("electronicsProducts").innerHTML = tronicsData;
+      let cartBtn = document.getElementsByClassName("add-cart-btn");
+      for (let i = 0; i < cartBtn.length; i++) {
+        let addToCart = cartBtn[i];
+        addToCart.addEventListener("click", addToCartClicked);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -119,37 +130,9 @@ jeweleryData();
 
 electronicsData();
 
-
-// create an cart that slides in from right to left and check out page
-let openPanelButton = document.getElementsByClassName("open-panel");
-let closePanelButton = document.getElementsByClassName("close-panel");
-let cartPanel = document.querySelector(".cart-panel");
-
-openPanelButton[0].onclick = () => {
-  console.log("here");
-  openPanelButton[0].classList.add("hide");
-  cartPanel.classList.toggle("open");
-  cartPanel.style.overflowY = "auto";
-  document.documentElement.style.getPropertyValue("--scroll-y");
-  const body = document.body;
-  body.style.height = "100vh";
-  body.style.overflowY = "hidden";
-};
-
-closePanelButton[0].onclick = () => {
-  openPanelButton[0].classList.remove("hide");
-  cartPanel.classList.remove("open");
-  const body = document.body;
-  const scrollY = body.style.top;
-  body.style.position = "";
-  body.style.top = "";
-  body.style.height = "";
-  body.style.overflowY = "";
-  window.scrollTo(0, parseInt(scrollY || "0") * -1);
-};
-
 function addToCartClicked(e) {
   let button = e.target;
+  console.log(button);
   let shopItem = button.parentElement.parentElement;
   let title = shopItem.getElementsByClassName("name")[0].innerText;
   let price = shopItem.getElementsByClassName("price")[0].innerText;
@@ -172,20 +155,62 @@ function addItemToCart(title, price, imgSrc) {
     </div>
 
   </div>
-  <button>
+  <button class='btn-danger'>
     <i class="bi bi-x"></i>
   </button>`;
 
   newCartRow.innerHTML = cartRow;
   cartContents.appendChild(newCartRow);
+  newCartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeItemsFromCart)
+  
 }
+
+let removeFromCart = document.getElementsByClassName("btn-danger");
+function removeItemsFromCart(){
+  for (let i = 0; i < removeFromCart.length; i++) {
+      let button = removeFromCart[i];
+      button.addEventListener("click", function (event) {
+        let buttonClicked = event.target;
+        buttonClicked.parentNode.parentNode.remove();
+      });
+    }
+}
+
+// create an cart that slides in from right to left and check out page
+let openPanelButton = document.getElementsByClassName("open-panel");
+let closePanelButton = document.getElementsByClassName("close-panel");
+let cartPanel = document.querySelector(".cart-panel");
+
+openPanelButton[0].onclick = () => {
+  console.log("here");
+  openPanelButton[0].classList.add("hide");
+  cartPanel.classList.toggle("open");
+  cartPanel.style.overflowY = "auto";
+  document.documentElement.style.getPropertyValue("--scroll-y");
+  const body = document.body;
+  body.style.height = "100vh";
+  body.style.overflowY = "hidden";
+  removeItemsFromCart()
+};
+
+closePanelButton[0].onclick = () => {
+  openPanelButton[0].classList.remove("hide");
+  cartPanel.classList.remove("open");
+  const body = document.body;
+  const scrollY = body.style.top;
+  body.style.position = "";
+  body.style.top = "";
+  body.style.height = "";
+  body.style.overflowY = "";
+  window.scrollTo(0, parseInt(scrollY || "0") * -1);
+};
+
+
+
 
 
 
 // create an search page that search all product from api via name or category
-
-
-
 
 const userCardTemplate = document.querySelector("[data-user-template]");
 const cardContainer = document.querySelector("[data-card-container]");
@@ -226,11 +251,9 @@ fetch(url)
         element: card,
       };
     });
+    let cartBtn = document.getElementsByClassName("add-cart-btn");
+      for (let i = 0; i < cartBtn.length; i++) {
+        let addToCart = cartBtn[i];
+        addToCart.addEventListener("click", addToCartClicked);
+      }
   });
-
-
-
-
-
-
-
