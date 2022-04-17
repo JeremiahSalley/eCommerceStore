@@ -276,7 +276,7 @@ p2 {
   cursor: pointer;
 }
 
-#electronicsProducts, #menProducts, #womenProducts, #jewerelyProducts{
+#electronicsProducts, #menProducts, #womenProducts, #jewerelyProducts, #searchProducts{
   display: grid;
   align-items: center;
   grid-template-columns: repeat(3, minmax(320px, 0fr));
@@ -318,7 +318,8 @@ p2 {
   width: 100%;
   font-size: 1.2em;
   padding-bottom: 2px;
-  color: #9BBACE;
+  /* color: #9BBACE; */
+  color: #ccc;
   margin-bottom: auto;
 }
 
@@ -368,6 +369,11 @@ p2 {
 .hide {
   visibility: hidden !important;
 }
+
+.cardHide{
+  display: none;
+}
+
 
 .cart-header {
   width: 100%;
@@ -498,3 +504,37 @@ p2 {
 .checkout-button > button > i {
   font-size: 2em;
 }
+
+.search-container{
+  background-color: transparent;
+  height: 80px;
+  
+  /* margin: 0 auto; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+/* .search-wrapper{
+
+  margin: 1em 0;
+  
+} */
+.search-container input{
+  width: 60%;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.5px;
+  line-height: 1.25;
+  text-transform: none;
+  color: #333;
+  /* padding: 12px 16px; */
+  outline: 0;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: transparent
+}
+
+

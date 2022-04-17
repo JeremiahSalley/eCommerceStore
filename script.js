@@ -3,6 +3,12 @@ const mensUrl = "https://fakestoreapi.com/products/category/men's clothing";
 const womenUrl = "https://fakestoreapi.com/products/category/women's clothing";
 const electronicsUrl = "https://fakestoreapi.com/products/category/electronics";
 const jeweleryUrl = "https://fakestoreapi.com/products/category/jewelery";
+const searchInput = document.getElementById("search");
+const searchItems = document.getElementById("searchProducts");
+let shopCard = document.getElementsByClassName("card");
+
+let newShopCard = [...shopCard];
+console.log(newShopCard);
 
 function womenData() {
   fetch(womenUrl)
@@ -113,7 +119,6 @@ jeweleryData();
 
 electronicsData();
 
-// create an search page that search all product from api via name or category
 
 // create an cart that slides in from right to left and check out page
 let openPanelButton = document.getElementsByClassName("open-panel");
@@ -124,11 +129,11 @@ openPanelButton[0].onclick = () => {
   console.log("here");
   openPanelButton[0].classList.add("hide");
   cartPanel.classList.toggle("open");
-  cartPanel.style.overflowY = 'auto';
-  document.documentElement.style.getPropertyValue('--scroll-y');
+  cartPanel.style.overflowY = "auto";
+  document.documentElement.style.getPropertyValue("--scroll-y");
   const body = document.body;
-  body.style.height = '100vh';
-  body.style.overflowY = 'hidden';
+  body.style.height = "100vh";
+  body.style.overflowY = "hidden";
 };
 
 closePanelButton[0].onclick = () => {
@@ -136,11 +141,11 @@ closePanelButton[0].onclick = () => {
   cartPanel.classList.remove("open");
   const body = document.body;
   const scrollY = body.style.top;
-  body.style.position = '';
-  body.style.top = '';
-  body.style.height = '';
-  body.style.overflowY = '';
-  window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  body.style.position = "";
+  body.style.top = "";
+  body.style.height = "";
+  body.style.overflowY = "";
+  window.scrollTo(0, parseInt(scrollY || "0") * -1);
 };
 
 function addToCartClicked(e) {
@@ -156,7 +161,7 @@ function addItemToCart(title, price, imgSrc) {
   let cartContents = document.getElementsByClassName("products")[0];
   // let cartContent = document.getElementsByClassName("product")[0];
   let newCartRow = document.createElement("div");
-  newCartRow.classList.add('product')
+  newCartRow.classList.add("product");
   let cartRow = `
   <img width="60" src="${imgSrc}" alt="iphone" />
   <div>
@@ -171,7 +176,61 @@ function addItemToCart(title, price, imgSrc) {
     <i class="bi bi-x"></i>
   </button>`;
 
-  newCartRow.innerHTML = cartRow
-  cartContents.appendChild(newCartRow)
-
+  newCartRow.innerHTML = cartRow;
+  cartContents.appendChild(newCartRow);
 }
+
+
+
+// create an search page that search all product from api via name or category
+
+
+
+
+const userCardTemplate = document.querySelector("[data-user-template]");
+const cardContainer = document.querySelector("[data-card-container]");
+
+let products = [];
+
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+  // console.log(shopItems)
+
+  products.forEach((product) => {
+    const isVisible =
+      product.name.toLowerCase().includes(value) ||
+      product.category.toLowerCase().includes(value);
+    product.element.classList.toggle("cardHide", !isVisible);
+  });
+  //   if isVisible not true it will hide the card and only show card that have the same value as the input
+});
+
+fetch(url)
+  .then((res) => res.json())
+  .then((data) => {
+    products = data.map((shopItem) => {
+      const card = userCardTemplate.content.cloneNode(true).children[0];
+      const cardImg = card.querySelector("[data-image]");
+      const cardTitle = card.querySelector("[data-title]");
+      const cardPrice = card.querySelector("[data-price]");
+
+      cardImg.src = shopItem.image;
+      cardTitle.innerText = shopItem.title;
+      cardPrice.innerText = `$` + shopItem.price;
+      console.log(card);
+      cardContainer.append(card);
+      // console.log(shopItem)
+      return {
+        name: shopItem.title,
+        category: shopItem.category,
+        element: card,
+      };
+    });
+  });
+
+
+
+
+
+
+
