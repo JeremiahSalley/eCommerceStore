@@ -471,7 +471,7 @@ p2 {
 
 .cart-quantity-input{
   height: 25px;
-  width: 30px;
+  width: 65px;
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.2);
   background-color: #eee;
@@ -497,9 +497,11 @@ p2 {
   font-weight: bolder;
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
+
+
 
 .checkout-button > button > i {
   font-size: 2em;

@@ -29,6 +29,9 @@ function womenData() {
         let addToCart = cartBtn[i];
         addToCart.addEventListener("click", addToCartClicked);
       }
+      let quantityInput = document.getElementsByClassName(
+        "cart-quantity-input"
+      );
     })
     .catch((err) => {
       console.log(err);
@@ -130,6 +133,8 @@ jeweleryData();
 
 electronicsData();
 
+// Add item to Cart
+
 function addToCartClicked(e) {
   let button = e.target;
   console.log(button);
@@ -138,6 +143,7 @@ function addToCartClicked(e) {
   let price = shopItem.getElementsByClassName("price")[0].innerText;
   let imgSrc = shopItem.getElementsByClassName("shop-item-image")[0].src;
   addItemToCart(title, price, imgSrc);
+  updateTotal()
 }
 
 function addItemToCart(title, price, imgSrc) {
@@ -145,38 +151,89 @@ function addItemToCart(title, price, imgSrc) {
   // let cartContent = document.getElementsByClassName("product")[0];
   let newCartRow = document.createElement("div");
   newCartRow.classList.add("product");
+  let cartItemTitle = document.getElementsByClassName('title')
+  for(i = 0; i < cartItemTitle.length; i++){
+    if(cartItemTitle[i].innerText == title){
+      alert(`${title} is already added to cart`)
+      return
+    }
+  }
   let cartRow = `
   <img width="60" src="${imgSrc}" alt="iphone" />
   <div>
     <span class='title'> ${title}</span>
     <div class='price-section'>
     <input type="number" value="1" class="cart-quantity-input" />
-    ${price}
+    <span class='cart-price'>${price}</span>
     </div>
 
   </div>
   <button class='btn-danger'>
     <i class="bi bi-x"></i>
   </button>`;
-
   newCartRow.innerHTML = cartRow;
   cartContents.appendChild(newCartRow);
-  newCartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeItemsFromCart)
-  
+  newCartRow
+    .getElementsByClassName("btn-danger")[0]
+    .addEventListener("click", removeItemsFromCart);
+  newCartRow
+    .getElementsByClassName("cart-quantity-input")[0]
+    .addEventListener("change", quantityChange);
 }
+
+// Remove Item from Cart
 
 let removeFromCart = document.getElementsByClassName("btn-danger");
-function removeItemsFromCart(){
+function removeItemsFromCart() {
   for (let i = 0; i < removeFromCart.length; i++) {
-      let button = removeFromCart[i];
-      button.addEventListener("click", function (event) {
-        let buttonClicked = event.target;
-        buttonClicked.parentNode.parentNode.remove();
-      });
-    }
+    let button = removeFromCart[i];
+    button.addEventListener("click", function (event) {
+      let buttonClicked = event.target;
+      buttonClicked.parentNode.parentNode.remove();
+      updateTotal()
+    });
+  }
 }
 
-// create an cart that slides in from right to left and check out page
+// Update the cart total when item added to the cart 
+
+function updateTotal(){
+  let cartContainer = document.getElementsByClassName('products')[0]
+  let cartRows = document.getElementsByClassName('product');
+  let total = 0;
+  for(i = 0; i < cartRows.length; i++){
+    let cartRow = cartRows[i];
+    let priceElement = cartRow.getElementsByClassName('cart-price')[0];
+    let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
+    let price = priceElement.innerText.replace('$', '')
+    let quantity = quantityElement.value;
+    total = total + price * quantity
+  }
+
+  total = Math.round(total * 100)/100
+  document.getElementsByClassName('cart-total-price')[0].innerText = '$'+ total
+
+
+}
+
+// Update the cart total when item quantity changes
+
+let quantityInput = document.getElementsByClassName('cart-quantity-input')
+for (i = 0; i < quantityInput.length; i++){
+  let input = quantityInput[i]
+  input.addEventListener('change', quantityChange)
+}
+
+function quantityChange(e) {
+  let input = e.target;
+  if(isNaN(input.value) || input.value <= 0){
+    input.value = 1
+  }
+  updateTotal()
+}
+
+// create modal open and close function
+
 let openPanelButton = document.getElementsByClassName("open-panel");
 let closePanelButton = document.getElementsByClassName("close-panel");
 let cartPanel = document.querySelector(".cart-panel");
@@ -190,7 +247,9 @@ openPanelButton[0].onclick = () => {
   const body = document.body;
   body.style.height = "100vh";
   body.style.overflowY = "hidden";
-  removeItemsFromCart()
+  removeItemsFromCart();
+  quantityChange();
+  updateTotal()
 };
 
 closePanelButton[0].onclick = () => {
@@ -204,11 +263,6 @@ closePanelButton[0].onclick = () => {
   body.style.overflowY = "";
   window.scrollTo(0, parseInt(scrollY || "0") * -1);
 };
-
-
-
-
-
 
 // create an search page that search all product from api via name or category
 
@@ -252,8 +306,8 @@ fetch(url)
       };
     });
     let cartBtn = document.getElementsByClassName("add-cart-btn");
-      for (let i = 0; i < cartBtn.length; i++) {
-        let addToCart = cartBtn[i];
-        addToCart.addEventListener("click", addToCartClicked);
-      }
+    for (let i = 0; i < cartBtn.length; i++) {
+      let addToCart = cartBtn[i];
+      addToCart.addEventListener("click", addToCartClicked);
+    }
   });
