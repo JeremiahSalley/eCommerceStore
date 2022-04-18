@@ -199,7 +199,7 @@ function removeItemsFromCart() {
 
 function updateTotal(){
   let cartContainer = document.getElementsByClassName('products')[0]
-  let cartRows = document.getElementsByClassName('product');
+  let cartRows = cartContainer.getElementsByClassName('product');
   let total = 0;
   for(i = 0; i < cartRows.length; i++){
     let cartRow = cartRows[i];
