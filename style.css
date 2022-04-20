@@ -410,6 +410,7 @@ p2 {
 }
 .products {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   margin-top: 60px;
   justify-content: center;
